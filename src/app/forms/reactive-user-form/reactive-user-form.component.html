@@ -1,0 +1,46 @@
+
+<form (ngSubmit)="onSubmit()">
+    <ng-container [formGroup]="userFormGroup">
+        <div>
+            <label>Name</label>
+            <input
+                type="text"
+                formControlName="name"
+                />
+            <span *ngIf="isSubmitted && getNameCtrl?.hasError('required')">
+                Required
+            </span>
+        </div>
+        <div>
+            <label>User Name</label>
+            <input
+                type="text"
+                formControlName="username"
+                />
+            <span *ngIf="isSubmitted && getusernameCtrl?.hasError('required')">
+                Required
+            </span>
+        </div>
+        <div>
+            <label>Email</label>
+            <input
+                type="text" 
+                formControlName="email"
+                />
+            <span *ngIf="isSubmitted && getEmailCtrl?.hasError('required')">
+                Required
+            </span>
+        </div>
+        <br/>
+        <h3>Address</h3>
+        <app-reactive-address-form
+            [isSubmitted]="isSubmitted">
+        </app-reactive-address-form>
+        <br/>
+
+        <button
+            type="submit">
+            Submit
+        </button>
+    </ng-container>
+</form>

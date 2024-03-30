@@ -1,0 +1,41 @@
+<div *ngIf="address">
+    <div>
+        <label>Street</label>
+        <input
+            type="text" 
+            name="street"
+            [(ngModel)]="address.street"
+            #streetModel="ngModel"
+            required
+            (ngModelChange)="emitChange()"/>
+        <span *ngIf="formModel?.submitted && streetModel.hasError('required')">
+            Required
+        </span>
+    </div>
+    <div>
+        <label>City</label>
+        <input
+            type="text" 
+            name="city"
+            [(ngModel)]="address.city"
+            #cityModel="ngModel"
+            required
+            (ngModelChange)="emitChange()"/>
+        <span *ngIf="formModel?.submitted && cityModel.hasError('required')">
+            Required
+        </span>
+    </div>
+    <div>
+        <label>Zipcode</label>
+        <input
+            type="text" 
+            name="zipcode"
+            [(ngModel)]="address.zipcode"
+            #zipcodeModel="ngModel"
+            required
+            (ngModelChange)="emitChange()"/>
+        <span *ngIf="formModel?.submitted && zipcodeModel.hasError('required')">
+            Required
+        </span>
+    </div>
+</div>

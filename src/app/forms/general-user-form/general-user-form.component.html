@@ -1,0 +1,92 @@
+
+<form #formModel="ngForm" (ngSubmit)="onSubmit(formModel)">
+    <div>
+        <label>Name</label>
+        <input
+            type="text" 
+            name="name"
+            [(ngModel)]="userFormModel.name"
+            #nameModel="ngModel"
+            required/>
+        <span *ngIf="formModel.submitted && nameModel.hasError('required')">
+            Required
+        </span>
+    </div>
+    <div>
+        <label>User Name</label>
+        <input
+            type="text" 
+            name="username"
+            [(ngModel)]="userFormModel.username"
+            #usernameModel="ngModel"
+            required/>
+        <span *ngIf="formModel.submitted && usernameModel.hasError('required')">
+            Required
+        </span>
+    </div>
+    <div>
+        <label>Email</label>
+        <input
+            type="text" 
+            name="email"
+            [(ngModel)]="userFormModel.email"
+            #emailModel="ngModel"
+            required/>
+        <span *ngIf="formModel.submitted && emailModel.hasError('required')">
+            Required
+        </span>
+    </div>
+    <br/>
+    <h3>Address</h3>
+    <div *ngIf="userFormModel.address"
+        ngModelGroup="address">
+        <app-general-address-form
+            [(address)]="userFormModel.address"
+            [formModel]="formModel">
+        </app-general-address-form>
+    </div>
+    <!-- <div *ngIf="userFormModel.address">
+        <div>
+            <label>Street</label>
+            <input
+                type="text" 
+                name="street"
+                [(ngModel)]="userFormModel.address.street"
+                #streetModel="ngModel"
+                required/>
+            <span *ngIf="formModel.submitted && streetModel.hasError('required')">
+                Required
+            </span>
+        </div>
+        <div>
+            <label>City</label>
+            <input
+                type="text" 
+                name="city"
+                [(ngModel)]="userFormModel.address.city"
+                #cityModel="ngModel"
+                required/>
+            <span *ngIf="formModel.submitted && cityModel.hasError('required')">
+                Required
+            </span>
+        </div>
+        <div>
+            <label>Zipcode</label>
+            <input
+                type="text" 
+                name="zipcode"
+                [(ngModel)]="userFormModel.address.zipcode"
+                #zipcodeModel="ngModel"
+                required/>
+            <span *ngIf="formModel.submitted && zipcodeModel.hasError('required')">
+                Required
+            </span>
+        </div>
+    </div> -->
+    <br/>
+
+    <button
+        type="submit">
+        Submit
+    </button>
+</form>

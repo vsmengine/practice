@@ -1,0 +1,32 @@
+<div [formGroup]="addressFormGroup">
+    <div>
+        <label>Street</label>
+        <input
+            type="text" 
+            formControlName="street"/>
+        <span *ngIf="isSubmitted && getStreetCtrl?.hasError('required')">
+            Required
+        </span>
+    </div>
+    <div>
+        <label>City</label>
+        <input
+            type="text" 
+            formControlName="city"/>
+        <span *ngIf="isSubmitted && getCityCtrl?.hasError('required')">
+            Required
+        </span>
+    </div>
+    <div>
+        <label>Zipcode</label>
+        <input
+            type="text" 
+            formControlName="zipcode"/>
+        <span *ngIf="isSubmitted && getZipcodeCtrl?.hasError('required')">
+            Required
+        </span>
+        <span *ngIf="isSubmitted && getZipcodeCtrl?.hasError('length')">
+            Zipcode length is not correct
+        </span>
+    </div>
+</div>

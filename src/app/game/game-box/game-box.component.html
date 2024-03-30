@@ -1,0 +1,41 @@
+<p>game-box works!</p>
+
+<ng-container *ngIf="mappedGroupArray.length > 0">
+    <div class="grid">
+        <ng-container *ngFor="let group of mappedGroupArray; let lastCol = last">
+            <div class="column">
+                <ng-container *ngFor="let hexagon of group; let lastRow = last">
+                    <span 
+                        class="hexagon"
+                        [ngStyle]="{
+                            'width': hexagonWidth+'px',
+                            'height': hexagonHeight+'px',
+                            'margin-right': lastCol ? 0 : -hexagonHorizShift+'px',
+                            'margin-bottom': lastRow ? 0 : -hexagonVertShift+'px'
+                        }">
+                        <!-- <span>
+                            {{hexagon.x + ' ' + hexagon.y + ' ' + hexagon.z}}
+                        </span>
+                        <br> -->
+                        <span [ngStyle]="{'color': 'red'}">
+                            {{hexagon.value !== 0 ? hexagon.value : ''}}
+                        </span>
+                    </span>
+                    <!-- <span 
+                        class="hexagon"
+                        [ngStyle]="{
+                            'margin-right': lastCol ? 0 : -hexagonHorizShift+'px',
+                            'margin-bottom': lastRow ? 0 : -hexagonVertShift+'px'
+                        }">
+                        <img
+                            width="{{hexagonWidth}}"
+                            height="auto"
+                            [src]="'./../../../assets/hexagon.svg'" 
+                            alt="hexagon"/>
+                    </span> -->
+                </ng-container>
+            </div>
+        </ng-container>
+    </div>
+</ng-container>
+

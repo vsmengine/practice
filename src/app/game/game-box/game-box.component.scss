@@ -1,0 +1,20 @@
+
+.grid {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.hexagon {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background: url('./../../../assets/hexagon.svg'), no-repeat, center;
+    background-size: cover;
+}
