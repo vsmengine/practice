@@ -43,6 +43,10 @@ export class GameBoxComponent implements OnInit {
   public hexagonVertShift: number = (4 * 0.25); // border - 16
 
   private xyz: ICoords[] = [
+    // {x: 0, y: 1, z: -1, value: 2},
+    // {x: 0, y: -1, z: 1, value: 2},
+    // {x: 0, y: -2, z: 2, value: 2},
+
     // {x: 0, y: -2, z: 2, value: 2},
     // {x: 0, y: -1, z: 1, value: 2},
     // {x: -1, y: 1, z: 0, value: 2},
@@ -128,8 +132,14 @@ export class GameBoxComponent implements OnInit {
     const incAxis =  this.dataIncAxis[dir - 1] as keyof ICoords;
     const decAxis =  this.dataDecAxis[dir - 1] as keyof ICoords;
 
-    // Fix hereee
-    const sortedXyz: ICoords[] = this.xyz.sort((a: any, b: any) => a[fixedAxis] - b[fixedAxis]);
+    const sortedXyz: ICoords[] = this.xyz
+    .sort((a: any, b: any) => 
+      a[fixedAxis] - b[fixedAxis]
+    ).sort((a: any, b: any) => {
+      return (a[fixedAxis] === b[fixedAxis])
+       ? (a[decAxis] - b[decAxis])
+       : 0;
+    });
 
     // grouped values based on fixed axis value
     const groupArray: ICoords[][] = Array.from({length: this.gridColCount}, ()=>[]);
@@ -148,6 +158,7 @@ export class GameBoxComponent implements OnInit {
         const lastCoords = groupArray[groupArrayIndex][arrLength - 1] as ICoords;
         const lastValue = lastCoords.value;
         const currentValue = sortedXyz[i].value;
+        
         if ( currentValue !== 0 && lastValue === currentValue ) {
           groupArray[groupArrayIndex][arrLength - 1] = {...lastCoords, value: 2 * lastValue};
         } else {
